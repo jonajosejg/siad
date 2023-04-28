@@ -34,10 +34,11 @@ type (
 
 	// A BlockHeader contains the data that, when hashed, produces the Block's ID.
 	BlockHeader struct {
-		ParentID   BlockID     `json:"parentid"`
-		Nonce      BlockNonce  `json:"nonce"`
-		Timestamp  Timestamp   `json:"timestamp"`
-		MerkleRoot crypto.Hash `json:"merkleroot"`
+		ParentID      BlockID     `json:"parentid"`
+		Nonce         BlockNonce  `json:"nonce"`
+		Timestamp     Timestamp   `json:"timestamp"`
+		MerkleRoot    crypto.Hash `json:"merkleroot"`
+		PrevMainBlock crypto.Hash `json:"prevmainblock"`
 	}
 
 	// BlockHeight is the number of blocks that exist after the genesis block.
@@ -105,10 +106,11 @@ func (b Block) CalculateSubsidy(height BlockHeight) Currency {
 // Header returns the header of a block.
 func (b Block) Header() BlockHeader {
 	return BlockHeader{
-		ParentID:   b.ParentID,
-		Nonce:      b.Nonce,
-		Timestamp:  b.Timestamp,
-		MerkleRoot: b.MerkleRoot(),
+		ParentID:      b.ParentID,
+		Nonce:         b.Nonce,
+		Timestamp:     b.Timestamp,
+		MerkleRoot:    b.MerkleRoot(),
+		PrevMainBlock: b.PrevMainBlock(),
 	}
 }
 
@@ -137,6 +139,13 @@ func (b Block) MerkleRoot() crypto.Hash {
 		buf.Reset()
 	}
 	return tree.Root()
+}
+
+// PrevMainBlock returns the previous blockhash of the mainchain block
+// Current just a placeholder 32-byte hash
+func (b Block) PrevMainBlock() crypto.Hash {
+	var DUMMY = make([]byte, 32)
+	return crypto.HashObject(DUMMY)
 }
 
 // MinerPayoutID returns the ID of the miner payout at the given index, which
