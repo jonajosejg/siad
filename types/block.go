@@ -95,6 +95,12 @@ func (h BlockHeader) ID() BlockID {
 	return BlockID(crypto.HashObject(h))
 }
 
+// GetPrevMainBlock returns the 32-byte hash of the previous block found in the
+// mainchain that is used on both of the mainchain, sidechain headers
+func (prev BlockHeader) GetPrevMainBlock() PrevMainBlockHash {
+	return PrevMainBlockHash(crypto.HashObject(prev))
+}
+
 // CalculateSubsidy takes a block and a height and determines the block
 // subsidy.
 func (b Block) CalculateSubsidy(height BlockHeight) Currency {
