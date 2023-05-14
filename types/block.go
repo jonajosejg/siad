@@ -51,6 +51,10 @@ type (
 	// The BlockNonce is a "scratch space" that miners can freely alter to produce
 	// a BlockID that satisfies a given Target.
 	BlockNonce [8]byte
+
+	// 32 (PrevMainBlockHash) values used in both mainchain, sidechain
+	// blockheader entries
+	PrevMainBlockHash crypto.Hash
 )
 
 // CalculateCoinbase calculates the coinbase for a given height. The coinbase
