@@ -58,14 +58,15 @@ type ConsensusHeadersGET struct {
 // ConsensusBlocksGet contains all fields of a types.Block and additional
 // fields for ID and Height.
 type ConsensusBlocksGet struct {
-	ID           types.BlockID           `json:"id"`
-	Height       types.BlockHeight       `json:"height"`
-	ParentID     types.BlockID           `json:"parentid"`
-	Nonce        types.BlockNonce        `json:"nonce"`
-	Difficulty   types.Currency          `json:"difficulty"`
-	Timestamp    types.Timestamp         `json:"timestamp"`
-	MinerPayouts []types.SiacoinOutput   `json:"minerpayouts"`
-	Transactions []ConsensusBlocksGetTxn `json:"transactions"`
+	ID                types.BlockID           `json:"id"`
+	PrevMainBlockHash types.PrevMainBlockHash `json:prevmainblockhash"`
+	Height            types.BlockHeight       `json:"height"`
+	ParentID          types.BlockID           `json:"parentid"`
+	Nonce             types.BlockNonce        `json:"nonce"`
+	Difficulty        types.Currency          `json:"difficulty"`
+	Timestamp         types.Timestamp         `json:"timestamp"`
+	MinerPayouts     []types.SiacoinOutput   `json:"minerpayouts"`
+	Transactions     []ConsensusBlocksGetTxn `json:"transactions"`
 }
 
 // ConsensusBlocksGetTxn contains all fields of a types.Transaction and an
