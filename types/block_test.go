@@ -78,6 +78,7 @@ func TestBlockHeader(t *testing.T) {
 		b.Nonce,
 		b.Timestamp,
 		b.MerkleRoot(),
+		b.PrevMainBlock(),
 	))
 
 	if id1 != id2 || id2 != id3 || id3 != id1 {
