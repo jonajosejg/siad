@@ -112,6 +112,8 @@ type NodeParams struct {
 	RPCAddress     string
 	WalletPassword string
 
+	MainChainPort string
+
 	// Initialize node from existing seed.
 	PrimarySeed string
 
